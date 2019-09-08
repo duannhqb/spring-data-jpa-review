@@ -14,7 +14,6 @@ public class PersonDTO extends UserDTO {
 	@NotNull
 	private String address;
 
-	@NotNull
 	private Long userId;
 
 	public Long getUserId() {

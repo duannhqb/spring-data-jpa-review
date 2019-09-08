@@ -53,8 +53,7 @@ public class User implements Serializable {
 			@JoinColumn(name = "authority_name") })
 	private Set<Authority> authorities = new HashSet<>();
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(unique = true)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
 	private Person person;
 
 	public Long getId() {

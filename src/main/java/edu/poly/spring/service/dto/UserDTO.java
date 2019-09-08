@@ -27,9 +27,6 @@ public class UserDTO {
 	@NotNull
 	private String password;
 
-	@NotNull
-	private Long personId;
-
 	private Set<String> authorities;
 
 	public Long getId() {
@@ -70,14 +67,6 @@ public class UserDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Long getPersonId() {
-		return personId;
-	}
-
-	public void setPersonId(Long personId) {
-		this.personId = personId;
 	}
 
 	public Set<String> getAuthorities() {

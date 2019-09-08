@@ -10,7 +10,6 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import edu.poly.spring.domain.Authority;
-import edu.poly.spring.domain.Person;
 import edu.poly.spring.domain.User;
 import edu.poly.spring.service.dto.UserDTO;
 
@@ -37,7 +36,6 @@ public class UserMapper implements EntityMapper<User, UserDTO> {
 			dto.setLastName(entity.getLastName());
 			dto.setLogin(entity.getLogin());
 			dto.setPassword(entity.getPassword());
-			dto.setPersonId(entity.getPerson().getId());
 		});
 
 		return Optional.ofNullable(dto).get();
@@ -62,10 +60,6 @@ public class UserMapper implements EntityMapper<User, UserDTO> {
 			user.setId(dto.getId());
 			user.setLogin(dto.getLogin());
 			user.setPassword(dto.getPassword());
-
-			Person person = new Person();
-			person.setId(user.getPerson().getId());
-			user.setPerson(person);
 		});
 
 		return Optional.ofNullable(user).get();

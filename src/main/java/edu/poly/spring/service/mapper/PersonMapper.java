@@ -42,9 +42,13 @@ public class PersonMapper implements EntityMapper<Person, PersonDTO> {
 			personDTO.setAddress(person.getAddress());
 			personDTO.setBirthday(person.getBirthday());
 			personDTO.setUserId(person.getUser().getId());
+			personDTO.setFirstName(person.getUser().getFirstName());
+			personDTO.setLastName(person.getUser().getLastName());
+			personDTO.setLogin(person.getUser().getLogin());
+			personDTO.setPassword(person.getUser().getPassword());
 
 			Set<String> authorities = new HashSet<>();
-			person.getUser().getAuthorities().forEach((authority) -> authorities.add(authority.toString()));
+			person.getUser().getAuthorities().forEach((authority) -> authorities.add(authority.getName()));
 
 			personDTO.setAuthorities(authorities);
 		});

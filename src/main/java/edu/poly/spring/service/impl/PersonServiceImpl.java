@@ -1,7 +1,9 @@
 package edu.poly.spring.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Service;
 import edu.poly.spring.domain.Person;
 import edu.poly.spring.repository.PersonRepository;
 import edu.poly.spring.service.PersonService;
+import edu.poly.spring.service.UserService;
 import edu.poly.spring.service.dto.PersonDTO;
+import edu.poly.spring.service.dto.UserDTO;
 import edu.poly.spring.service.mapper.PersonMapper;
 
 @Service
@@ -21,6 +25,9 @@ public class PersonServiceImpl implements PersonService {
 
 	@Autowired
 	private PersonRepository personRepository;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private PersonMapper personMapper;
@@ -74,9 +81,17 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public Optional<PersonDTO> save(PersonDTO personDTO) {
+		Set<String> authorities = new HashSet<>();
+		authorities.add("ROLE_USER");
+		personDTO.setAuthorities(authorities);
+
+		UserDTO user = userService.save(personDTO).get();
+		personDTO.setUserId(user.getId()); 
+		
 		Person person = Optional.ofNullable(personDTO)
 				.map(personMapper::toEntity)
 				.orElse(null);
+
 		return Optional
 				.ofNullable(personRepository.save(person))
 				.map(personMapper::toDto);

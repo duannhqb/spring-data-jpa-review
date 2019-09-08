@@ -46,7 +46,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 		}
 
 		// Admin account
-		if (userRepository.findByLogin("admin").getId() == null) {
+		if (null == userRepository.findByLogin("admin")) {
 			User admin = new User();
 			admin.setLogin("admin");
 			admin.setPassword(passwordEncoder.encode("admin"));
@@ -63,7 +63,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 		}
 
 		// User account
-		if (userRepository.findByLogin("user") == null) {
+		if (null == userRepository.findByLogin("user")) {
 			User user = new User();
 			user.setLogin("user");
 			user.setPassword(passwordEncoder.encode("user"));

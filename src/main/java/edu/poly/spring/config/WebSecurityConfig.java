@@ -37,15 +37,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		http.authorizeRequests().antMatchers("/").permitAll()
 //			.antMatchers("/register").permitAll()
-			.antMatchers("/*").hasRole("USER")
+//			.antMatchers("/*").hasRole("USER")
 //			.antMatchers("/admin").hasRole("ADMIN")
-			.anyRequest().permitAll()
-			.and()
-			.formLogin().usernameParameter("login")
-			.passwordParameter("password").defaultSuccessUrl("/api/users").failureUrl("/login?error").and()
-				.exceptionHandling().accessDeniedPage("/403");
+				.and().formLogin().usernameParameter("login").passwordParameter("password")
+				.defaultSuccessUrl("/api/users").failureUrl("/login?error").and().exceptionHandling()
+				.accessDeniedPage("/403");
+
+        http.csrf().disable();
 	}
 
 }

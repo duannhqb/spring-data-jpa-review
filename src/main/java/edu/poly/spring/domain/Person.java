@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,7 +21,6 @@ public class Person implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -31,7 +31,8 @@ public class Person implements Serializable {
 	@Column
 	private String address;
 
-	@OneToOne(mappedBy = "person")
+	@OneToOne
+	@JoinColumn(unique = true)
 	private User user;
 
 	public User getUser() {
