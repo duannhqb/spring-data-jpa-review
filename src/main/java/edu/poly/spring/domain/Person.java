@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name = "nhd_person")
 @Entity
+@Table(name = "nhd_person")
 public class Person implements Serializable {
 
 	/**

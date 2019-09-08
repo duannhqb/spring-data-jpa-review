@@ -8,13 +8,15 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * @author Huu Duan
  *
  */
-@Entity(name = "nhd_authority")
+@Entity
+@Table(name = "nhd_authority")
 public class Authority implements Serializable {
 
 	/**
@@ -35,4 +37,11 @@ public class Authority implements Serializable {
 		this.name = name;
 	}
 
+	public Authority() {
+		
+	}
+	
+	public Authority(String name) {
+		this.name = name;
+	}
 }

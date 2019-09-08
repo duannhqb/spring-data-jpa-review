@@ -17,4 +17,6 @@ import edu.poly.spring.domain.User;
 @Transactional
 public interface UserRepository extends JpaRepository<User, Long>{
 
+	User findByLogin(String login);
+	
 }

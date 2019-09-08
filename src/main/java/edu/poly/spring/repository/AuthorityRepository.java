@@ -15,6 +15,8 @@ import edu.poly.spring.domain.Authority;
  */
 @Repository
 @Transactional
-public interface AuthorityRepository extends JpaRepository<Authority, Long> {
+public interface AuthorityRepository extends JpaRepository<Authority, String> {
+	
+	Authority findByName(String name);
 
 }
